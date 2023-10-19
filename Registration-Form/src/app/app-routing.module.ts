@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginPanelComponent } from './components/login-panel/login-panel.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'Login', component: LoginPanelComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
