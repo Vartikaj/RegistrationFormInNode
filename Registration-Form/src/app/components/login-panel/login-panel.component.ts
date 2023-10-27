@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CountryListService } from 'src/app/services/country-list.service';
 
 @Component({
   selector: 'app-login-panel',
@@ -11,9 +12,15 @@ export class LoginPanelComponent implements OnInit {
   contactForm !: FormGroup;
   addressForm: any;
   submitted = false;
+  /**
+   * DATA COME FROM NODE IN THE FORM OF OBJECT,
+   * THEN WE HAVE TO CONVERT IT INTO THE ARRAY FORMAT.
+   */
+  countryData: any = [];
 
   constructor(
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private serviceCountry : CountryListService
     ){}
 
   ngOnInit() {
@@ -22,6 +29,7 @@ export class LoginPanelComponent implements OnInit {
       'streetAddress' : [null, [Validators.required, Validators.maxLength(50)]],
       'city': [null, [Validators.required, Validators.maxLength(20)]],
       'state' : [null, [Validators.required, Validators.maxLength(20)]],
+      'country' : [null, [Validators.required, Validators.maxLength(50)]],
       'postalCode': [null, [Validators.required, Validators.maxLength(20), Validators.pattern("^[0-9]*$")]]
     }),
     
@@ -33,6 +41,10 @@ export class LoginPanelComponent implements OnInit {
       // 'email' : [null, [Validators.required, Validators.email]],
       'phone': [null, Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")],
       'address' : this.addressForm,
+    })
+
+    this.serviceCountry.getCountryData().subscribe((response) => {
+      this.countryData = response;
     })
   }
 

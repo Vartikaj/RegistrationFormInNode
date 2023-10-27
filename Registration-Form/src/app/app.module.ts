@@ -7,7 +7,10 @@ import { LoginPanelComponent } from './components/login-panel/login-panel.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
-
+// THIS PACKAGE IS USED TO CALL DATA FROM THE NODE, SO WE HAVE TO CONNECT WITH THE INTERNET. BY USING THIS WE DO THIS
+import { HttpClientModule } from '@angular/common/http';
+//===================================
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +21,7 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([]),
   ],
   providers: [],
