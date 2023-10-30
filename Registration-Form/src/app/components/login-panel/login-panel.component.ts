@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryListService } from 'src/app/services/country-list.service';
+import { RegistrationDataService } from 'src/app/services/registration-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-panel',
@@ -20,8 +22,9 @@ export class LoginPanelComponent implements OnInit {
 
   constructor(
     private formBuilder : FormBuilder,
-    private serviceCountry : CountryListService
-    ){}
+    private serviceCountry : CountryListService,
+    private saveData : RegistrationDataService,
+    ) { }
 
   ngOnInit() {
 
@@ -36,10 +39,10 @@ export class LoginPanelComponent implements OnInit {
     this.contactForm = this.formBuilder.group({
       'firstName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
       'lastName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
-      'userName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
-      'admissionNumber' : [null, [Validators.required, Validators.pattern('[a-zA-Z0-9 .]*')]],
+      'username' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
+      'addmissionno' : [null, [Validators.required, Validators.pattern('[0-9 .]*')]],
       // 'email' : [null, [Validators.required, Validators.email]],
-      'phone': [null, Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")],
+      //'phone': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       'address' : this.addressForm,
     })
 
@@ -51,11 +54,15 @@ export class LoginPanelComponent implements OnInit {
   /**
    * THIS FUNCTION IS USED TO APPLY VALIDATION
    */
-  get validations() { return this.contactForm.controls; }
+  get validations() { 
+    return this.contactForm.controls; 
+  }
   get addressValidations() { return this.addressForm.controls; }
 
   submit(){
     this.submitted = true;
+    this.saveData.saveData(this.contactForm.value).subscribe((responseData) => {
+      console.log(responseData);
+    });
   }
-  
 }

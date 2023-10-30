@@ -18,23 +18,23 @@
             </div>
 
             <div class="col-lg-6 mb-4">
-                <input type="text" placeholder="Enter UserName" formControlName="userName" class="form-control" [ngClass] = "{'is-invalid' : submitted && validations['userName'].errors }">
-                <div *ngIf = "submitted && validations['userName'].errors" class="mb-0">
-                    <div *ngIf="validations['userName'].errors['required']">Username is required</div>
-                    <div *ngIf="validations['userName'].errors['pattern']">Username must contain letters (uppers or lower case), space or dot(.).</div>
+                <input type="text" placeholder="Enter UserName" formControlName="username" class="form-control" [ngClass] = "{'is-invalid' : submitted && validations['username'].errors }">
+                <div *ngIf = "submitted && validations['username'].errors" class="mb-0">
+                    <div *ngIf="validations['username'].errors['required']">username is required</div>
+                    <div *ngIf="validations['username'].errors['pattern']">Username must contain letters (uppers or lower case), space or dot(.).</div>
                 </div> 
             </div>
 
             <div class="col-lg-6 mb-4">
-                <input type="text" placeholder="Enter admission number" formControlName="admissionNumber" class="form-control" [ngClass] = "{'is-invalid' : submitted && validations['admissionNumber'].errors }">
-                <div *ngIf = "submitted && validations['admissionNumber'].errors" class="mb-0">
-                    <div *ngIf="validations['admissionNumber'].errors['required']">Admission number is required</div>
-                    <div *ngIf="validations['admissionNumber'].errors['pattern']">Admission number must contain letters (uppers or lower case), space or dot(.).</div>
+                <input type="text" placeholder="Enter admission number" formControlName="addmissionno" class="form-control" [ngClass] = "{'is-invalid' : submitted && validations['addmissionno'].errors }">
+                <div *ngIf = "submitted && validations['addmissionno'].errors" class="mb-0">
+                    <div *ngIf="validations['addmissionno'].errors['required']">Admission number is required</div>
+                    <div *ngIf="validations['addmissionno'].errors['pattern']">Admission number must contain letters (uppers or lower case), space or dot(.).</div>
                 </div> 
             </div>
 
             <div class="col-lg-12">
-                <label for="address" class="mb-2"><b>Address Details</b></label>
+                <b>Address Details</b>
                 <form [formGroup] ="addressForm" formGroupName="address">
                     <div class="row">
                         <div class="col-lg-6 mb-4">
@@ -72,12 +72,21 @@
                             </div> 
                         </div>
 
-                        <div class="col-lg-12">
-                            <button class="btn btn-primary">Register Now</button>
+                        <div class="col-lg-6 mb-4">
+                            <input type="text" placeholder="Enter Postal Code" formControlName="postalCode" class="form-control" [ngClass] = "{'is-invalid' : submitted && addressValidations['postalCode'].errors }">
+                            <div *ngIf = "submitted && addressValidations['postalCode'].errors" class="mb-0">
+                                <div *ngIf="addressValidations['postalCode'].errors['required']">Postal Code is required</div>
+                                <div *ngIf="addressValidations['postalCode'].errors['maxLength']">Input must be 10 digits long</div>
+                            </div> 
                         </div>
+
+                        
 
                     </div>
                 </form>
+            </div>
+            <div class="col-lg-12">
+                <button class="btn btn-primary">Register Now</button>
             </div>
         </div>
     </div>
