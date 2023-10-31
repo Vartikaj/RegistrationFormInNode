@@ -14,6 +14,7 @@ export class LoginPanelComponent implements OnInit {
   contactForm !: FormGroup;
   addressForm: any;
   submitted = false;
+  responseDataValue:any;
   /**
    * DATA COME FROM NODE IN THE FORM OF OBJECT,
    * THEN WE HAVE TO CONVERT IT INTO THE ARRAY FORMAT.
@@ -39,7 +40,7 @@ export class LoginPanelComponent implements OnInit {
     this.contactForm = this.formBuilder.group({
       'firstName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
       'lastName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
-      'username' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
+      'username' : [null, [Validators.required, Validators.pattern('[a-zA-Z0-9 .]*')]],
       'addmissionno' : [null, [Validators.required, Validators.pattern('[0-9 .]*')]],
       // 'email' : [null, [Validators.required, Validators.email]],
       //'phone': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
@@ -63,6 +64,7 @@ export class LoginPanelComponent implements OnInit {
     this.submitted = true;
     this.saveData.saveData(this.contactForm.value).subscribe((responseData) => {
       console.log(responseData);
+      this.responseDataValue = responseData;
     });
   }
 }
