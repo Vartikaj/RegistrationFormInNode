@@ -16,8 +16,7 @@
                     [ngClass]="{'is-invalid' : submitted && validations['firstName'].errors }">
                 <div *ngIf="submitted && validations['firstName'].errors" class="mb-0">
                     <div *ngIf="validations['firstName'].errors['required']">First name is required</div>
-                    <div *ngIf="validations['firstName'].errors['pattern']">First name must contain letters (uppers or
-                        lower case), space or dot(.).</div>
+                    <div *ngIf="validations['firstName'].errors['pattern']">First name must contain letters (uppers or lower case), space or dot(.).</div>
                 </div>
             </div>
             <div class="col-lg-6 mb-4">
