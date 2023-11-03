@@ -41,6 +41,7 @@ export class LoginPanelComponent implements OnInit {
       'firstName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
       'lastName' : [null, [Validators.required, Validators.pattern('[a-zA-Z .]*')]],
       'username' : [null, [Validators.required, Validators.pattern('[a-zA-Z0-9 .]*')]],
+      'password' : [null, [Validators.required, Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).+$/)]],
       'addmissionno' : [null, [Validators.required, Validators.pattern('[0-9 .]*')]],
       // 'email' : [null, [Validators.required, Validators.email]],
       //'phone': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
