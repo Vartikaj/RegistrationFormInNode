@@ -26,6 +26,8 @@ export class DashboardPanelComponent implements OnInit {
         const navigationjsontext = JSON.stringify(response);
         const navigationParseDatatext = JSON.parse(navigationjsontext);
         this.responseData = navigationParseDatatext;
+
+        
       });
 
     })

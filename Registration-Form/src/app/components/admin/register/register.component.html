@@ -16,6 +16,18 @@
             </div>
         </div>
 
+        <div class="col-lg-6 mb-4">
+            <input type="password" placeholder="password" formControlName="password" class="form-control"
+                [ngClass]="{'is-invalid' : submitted && validators['password'].errors }">
+            <div *ngIf="submitted && validators['password'].errors" class="mb-0">
+                <div *ngIf="validators['password'].errors['required']">Password is required</div>
+                <div *ngIf="validators['password'].errors['pattern']">Password must contain letters (uppers or
+                    lower case), digits and some special characters.</div>
+                <div *ngIf="validators['password'].errors['maxLength']">Password must contain at most 20 characters</div>
+                <div *ngIf="validators['password'].errors['minLength']">Password must contain at least 8 characters</div>
+            </div>
+        </div>
+
         <div class="col-lg-12">
             <button class="btn btn-primary">Login</button>
         </div>

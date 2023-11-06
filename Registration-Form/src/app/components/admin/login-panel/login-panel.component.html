@@ -49,9 +49,9 @@
                     <div *ngIf="validations['password'].errors['required']">Password is required</div>
                     <div *ngIf="validations['password'].errors['pattern']">Password must contain letters (uppers or
                         lower case), digits and some special characters.</div>
-                        <div *ngIf="validations['password'].errors['maxLength']">Password must contain at most 20 characters</div>
-                        <div *ngIf="validations['password'].errors['minLength']">Password must contain at least 8 characters</div>
-                    </div>
+                    <div *ngIf="validations['password'].errors['maxLength']">Password must contain at most 20 characters</div>
+                    <div *ngIf="validations['password'].errors['minLength']">Password must contain at least 8 characters</div>
+                </div>
             </div>
 
             <div class="col-lg-6 mb-4">

@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      'username' : [null, [Validators.required, Validators.pattern("[a-zA-Z .]*")]]
+      'username' : [null, [Validators.required, Validators.pattern("[a-zA-Z0-9 .]*")]],
+      'password' : [null, [Validators.required, Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).+$/)]]
     })
   }
 
@@ -33,26 +34,25 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
     if(this.loginForm.valid){
       this.loginData.loginData(this.loginForm.value).subscribe((responseData) => {
-        // this.responseDataSet = responseData;
+        console.log(responseData);
         let navigationExtras: NavigationExtras = {
           //HERE STATE IS A PROPERTY WHICH ATTACH THE DATA WITH THE NAVIGATION URL
           state : {
             customData : responseData
           }
-        } 
+        }
 
         const response = JSON.stringify(responseData);
         const jsonResponse = JSON.parse(response);
 
         if(jsonResponse.success){
-          console.log(navigationExtras);
+          console.log("navigationExtras : " + navigationExtras);
           this.router.navigate(['/dashboard'], navigationExtras);
         } else {
           this.responseDataSet = responseData;
         }
       })
     }
-    
   }
 
 }
