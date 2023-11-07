@@ -1,13 +1,17 @@
 <form [formGroup]="contactForm" (ngSubmit)="submit()">
 
     <div class="container">
-        <div *ngIf="responseDataValue?.mesgcode==1" class="alert alert-success" role="alert">
-            <p>Data Submitted Successfuly</p>
+        <!-- <div *ngIf="responseDataValue?.successCode==1" class="alert alert-success" role="alert">
+            <p>{{ responseDataValue.successMessage }}</p>
         </div>
 
-        <div *ngIf="responseDataValue?.mesgcode==0" class="alert alert-danger" role="alert">
-            <p>{{ responseDataValue.mesgtext }}</p>
+        <div *ngIf="responseDataValue?.successCode==2" class="alert alert-warning" role="alert">
+            <p>{{ responseDataValue.successMessage }}</p>
         </div>
+
+        <div *ngIf="responseDataValue?.successCode==3" class="alert alert-danger" role="alert">
+            <p>{{ responseDataValue.successMessage }}</p>
+        </div> -->
 
         <div class="row">
             <h3><b>REGISTRATION FORM</b></h3>

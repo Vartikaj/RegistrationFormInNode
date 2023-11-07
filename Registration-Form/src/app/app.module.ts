@@ -9,8 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPanelComponent } from './components/admin/login-panel/login-panel.component';
 import { RegisterComponent } from './components/admin/register/register.component';
 import { DashboardPanelComponent } from './components/admin/dashboard-panel/dashboard-panel.component';
+import { ToastrModule } from 'ngx-toastr';
 //===================================
- 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,11 @@ import { DashboardPanelComponent } from './components/admin/dashboard-panel/dash
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 15000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    }),
     RouterModule.forRoot([]),
   ],
   providers: [],
