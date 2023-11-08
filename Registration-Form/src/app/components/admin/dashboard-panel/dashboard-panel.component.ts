@@ -21,6 +21,8 @@ export class DashboardPanelComponent implements OnInit {
       const navigationParseData = JSON.parse(navigationjson);
       this.customData = navigationParseData;
 
+      console.log(this.customData);
+
       this.dashboardService.findData(this.customData).subscribe((response) => {
         console.log(response);
         const navigationjsontext = JSON.stringify(response);

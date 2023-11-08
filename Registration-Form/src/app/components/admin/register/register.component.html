@@ -1,11 +1,11 @@
 <form [formGroup] = "loginForm" (ngSubmit) = "submit()">
     <div class="container">
-        <div *ngIf="responseDataSet?.mesgcode==1" class="alert alert-success" role="alert">
+        <!-- <div *ngIf="responseDataSet?.mesgcode==1" class="alert alert-success" role="alert">
             <p>{{ responseDataSet.mesgtext }}</p>
         </div>
         <div *ngIf="responseDataSet?.mesgcode==2" class="alert alert-danger" role="alert">
             <p>{{ responseDataSet.mesgtext }}</p>
-        </div>
+        </div> -->
         <h3><b>LOGIN FORM</b></h3>
         <div class="col-lg-6 mb-4">
             <input type="text" placeholder="Username" formControlName="username" class="form-control"
