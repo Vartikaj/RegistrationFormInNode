@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryListService } from 'src/app/services/country-list.service';
 import { RegistrationDataService } from 'src/app/services/registration-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class LoginPanelComponent implements OnInit {
     private formBuilder: FormBuilder,
     private serviceCountry: CountryListService,
     private srvlogin: RegistrationDataService,
+    public toastrService: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -68,22 +70,17 @@ export class LoginPanelComponent implements OnInit {
     this.submitted = true;
     this.srvlogin.userlogin(this.contactForm.value).subscribe((res: any) => {
       if (res.success) {
-        if (res.msgCode == 1) {
-          this.responseDataValue = res;
-          /////////////////////////////////////////sucee
-          this.successMessage = 'User successfully login!!!';
-          this.successCode = 1;
-        } else {
-          /////////////////////////////////error api message
-          this.successMessage = 'Their is some error';
-          this.successCode = 2;
+        if (res.mesgcode == 1) {
+          this.toastrService.success('Message Success!', res.mesgtext)
+        }
+        if(res.mesgcode == 4 && res.mesgcode == 5){
+          this.toastrService.warning('Message Warning!', res.mesgtext);
         }
       } else {
-        ////////////////////////////////////////////error serfver message
-        this.successMessage = 'Server error, Try after sometime';
-          this.successCode = 3;
+        if(res.mesgcode == 0){
+          this.toastrService.error('Message Error!', res.mesgtext);
+        }
       }
-
     });
   }
 }
