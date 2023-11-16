@@ -16,22 +16,15 @@ export class DashboardPanelComponent implements OnInit {
   ngOnInit(){
     this.route.paramMap.subscribe(params => {
       const navigationState = window.history.state;
-      console.log(navigationState.customData);
       const navigationjson = JSON.stringify(navigationState.customData);
       const navigationParseData = JSON.parse(navigationjson);
       this.customData = navigationParseData;
 
-      console.log(this.customData);
-
       this.dashboardService.findData(this.customData).subscribe((response) => {
-        console.log(response);
         const navigationjsontext = JSON.stringify(response);
         const navigationParseDatatext = JSON.parse(navigationjsontext);
         this.responseData = navigationParseDatatext;
-
-        
       });
-
     })
   }
 

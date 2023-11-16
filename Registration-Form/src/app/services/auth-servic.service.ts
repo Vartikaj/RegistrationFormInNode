@@ -8,14 +8,14 @@ export class AuthServicService {
   constructor() { }
 
   storeToken(tokenValue: string){
-    return localStorage.setItem('token', tokenValue);
+    return localStorage.setItem('usertoken', tokenValue);
   }
 
   getToken(){
-    return localStorage.getItem('token')
+    return localStorage.getItem('usertoken');
   }
 
   isLoggedIn() : boolean {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('usertoken');
   }
 }

@@ -10,7 +10,7 @@ export class LoginDataService {
   constructor(public httpClient : HttpClient) {}
 
   loginData(data : any){
-    console.log(data);
+    console.log("Login Data : " + data);
     return this.httpClient.post(this.url + 'postLoginData', data);
 
   }

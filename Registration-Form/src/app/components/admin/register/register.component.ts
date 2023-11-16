@@ -32,8 +32,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     // this.toastrService.warning('Message Warning!', 'Title Warning!');
     this.loginForm = this.formBuilder.group({
-      'username' : [null, [Validators.required, Validators.pattern("[a-zA-Z0-9 .]*")]],
-      'password' : [null, [Validators.required, Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).+$/)]]
+      'username' : ['vrindamishra123', [Validators.required, Validators.pattern("[a-zA-Z0-9 .]*")]],
+      'password' : ['#@Gotohell1@', [Validators.required, Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).+$/)]]
     })
   }
 
@@ -69,6 +69,9 @@ export class RegisterComponent implements OnInit {
                 customData : res
               }
             }
+
+
+            localStorage.setItem('usertoken', res.token);
             this.toastrService.success('Message Success!', res.message)
             this.router.navigate(['/dashboard'], navigationExtras);
 

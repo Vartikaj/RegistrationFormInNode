@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 // THIS PACKAGE IS USED TO CALL DATA FROM THE NODE, SO WE HAVE TO CONNECT WITH THE INTERNET. BY USING THIS WE DO THIS
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginPanelComponent } from './components/admin/login-panel/login-panel.component';
 import { RegisterComponent } from './components/admin/register/register.component';
 import { DashboardPanelComponent } from './components/admin/dashboard-panel/dashboard-panel.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptor } from './services/my-interceptor.service';
 //===================================
 
 @NgModule({
@@ -31,7 +32,13 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     RouterModule.forRoot([]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
