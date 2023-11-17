@@ -11,6 +11,9 @@ import { RegisterComponent } from './components/admin/register/register.componen
 import { DashboardPanelComponent } from './components/admin/dashboard-panel/dashboard-panel.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './services/my-interceptor.service';
+import { DashboardDataService } from './services/dashboard-data.service';
+import { RegistrationDataService } from './services/registration-data.service';
+import { LoginDataService } from './services/login-data.service';
 //===================================
 
 @NgModule({
@@ -18,7 +21,7 @@ import { AuthInterceptor } from './services/my-interceptor.service';
     AppComponent,
     LoginPanelComponent,
     RegisterComponent,
-    DashboardPanelComponent
+    DashboardPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +39,11 @@ import { AuthInterceptor } from './services/my-interceptor.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
+    DashboardDataService,
+    RegistrationDataService,
+    LoginDataService,
   ],
   bootstrap: [AppComponent]
 })

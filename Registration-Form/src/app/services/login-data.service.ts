@@ -5,13 +5,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginDataService {
-  data : any;
+  data :any;
   private url = 'http://localhost:3000/login/'
   constructor(public httpClient : HttpClient) {}
 
   loginData(data : any){
-    console.log("Login Data : " + data);
-    return this.httpClient.post(this.url + 'postLoginData', data);
+    console.log("Login Data : " + JSON.stringify(data));
+    // return this.httpClient.post(this.url + 'postLoginData', data);
+    return this.httpClient.post(this.url + 'postLoginData',data);
 
   }
 

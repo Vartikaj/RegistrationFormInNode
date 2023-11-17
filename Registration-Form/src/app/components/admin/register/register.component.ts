@@ -37,22 +37,6 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  // openWarning(){
-    
-  // }
-
-  
-
-  // openError(){
-    
-  // }
-
-  // openInfo (){
-  //   this.toastrService.error('Message Error!', 'Title Error!');
-  // }
-
-
-
   get validators() {
     return this.loginForm.controls;
   }
@@ -60,7 +44,9 @@ export class RegisterComponent implements OnInit {
   submit() {
     this.submitted = true;
     if(this.loginForm.valid){
+      console.log(this.loginForm.value);
       this.loginData.loginData(this.loginForm.value).subscribe((res : any) => {
+        console.log("result data : " + res);
         if(res.success){
           if (res.mesgcode == 1) {
             let navigationExtras: NavigationExtras = {
@@ -73,8 +59,12 @@ export class RegisterComponent implements OnInit {
 
             localStorage.setItem('usertoken', res.token);
             this.toastrService.success('Message Success!', res.message)
-            this.router.navigate(['/dashboard'], navigationExtras);
-
+            if(localStorage.getItem('usertoken')){
+              this.router.navigate(['/dashboard'], navigationExtras);
+            } else { 
+              this.toastrService.warning('Token Warning!', 'Token Invalid');
+            }
+            
             // this.toastrService.success('Message Success!', res.message)
             // this.router.navigate(['/dashboard']);
             
