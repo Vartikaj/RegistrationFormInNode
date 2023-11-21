@@ -58,6 +58,10 @@ export class LoginPanelComponent implements OnInit {
     })
   }
 
+  get childFormControls() {
+    return (this.contactForm.get('addressForm') as FormGroup).controls;
+  }
+
   /**
    * THIS FUNCTION IS USED TO APPLY VALIDATION
    */

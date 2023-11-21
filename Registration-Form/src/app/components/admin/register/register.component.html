@@ -1,4 +1,4 @@
-<form [formGroup] = "loginForm" (ngSubmit) = "submit()">
+<form [formGroup] = "loginForm">
     <div class="container">
         <!-- <div *ngIf="responseDataSet?.mesgcode==1" class="alert alert-success" role="alert">
             <p>{{ responseDataSet.mesgtext }}</p>
@@ -6,30 +6,50 @@
         <div *ngIf="responseDataSet?.mesgcode==2" class="alert alert-danger" role="alert">
             <p>{{ responseDataSet.mesgtext }}</p>
         </div> -->
-        <h3><b>LOGIN FORM</b></h3>
-        <div class="col-lg-6 mb-4">
-            <input type="text" placeholder="Username" formControlName="username" class="form-control"
-                [ngClass]="{'is-invalid' : submitted && validators['username'].errors }">
-            <div *ngIf="submitted && validators['username'].errors" class="mb-0">
-                <div *ngIf="validators['username'].errors['required']">Username is required</div>
-                <div *ngIf="validators['username'].errors['pattern']">Username must contain letters (uppers or lower case), space or dot(.).</div>
+        <div class="row">
+            <h3><b>LOGIN FORM</b></h3>
+            <mat-form-field class="col-lg-12 mb-4">
+                <mat-label>Enter Username</mat-label>
+                <input matInput formControlName = "username">
+                <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username is required</mat-error>
+                <mat-error *ngIf="loginForm.get('username')?.hasError('pattern')">Username must contain letters (uppers or lower case), space or dot(.).</mat-error>
+            </mat-form-field>
+
+            <!-- <div class="col-lg-6 mb-4">
+                <input type="text" placeholder="Username" formControlName="username" class="form-control"
+                    [ngClass]="{'is-invalid' : submitted && validators['username'].errors }">
+                <div *ngIf="submitted && validators['username'].errors" class="mb-0">
+                    <div *ngIf="validators['username'].errors['required']">Username is required</div>
+                    <div *ngIf="validators['username'].errors['pattern']">Username must contain letters (uppers or lower case), space or dot(.).</div>
+                </div>
+            </div> -->
+
+            <mat-form-field class="col-lg-12 mb-4">
+                <mat-label>Enter Password</mat-label>
+                <input matInput formControlName = "password">
+                <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+                <mat-error *ngIf="loginForm.get('password')?.hasError('pattern')">Password must contain letters (uppers or
+                    lower case), digits and some special characters.</mat-error>
+                <mat-error *ngIf="loginForm.get('password')?.hasError('maxlength')">Password must contain at most 20 characters</mat-error>
+                <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Password must contain at least 8 characters</mat-error>
+            </mat-form-field>
+
+            <!-- <div class="col-lg-6 mb-4">
+                <input type="password" placeholder="password" formControlName="password" class="form-control"
+                    [ngClass]="{'is-invalid' : submitted && validators['password'].errors }">
+                <div *ngIf="submitted && validators['password'].errors" class="mb-0">
+                    <div *ngIf="validators['password'].errors['required']">Password is required</div>
+                    <div *ngIf="validators['password'].errors['pattern']">Password must contain letters (uppers or
+                        lower case), digits and some special characters.</div>
+                    <div *ngIf="validators['password'].errors['maxLength']">Password must contain at most 20 characters</div>
+                    <div *ngIf="validators['password'].errors['minLength']">Password must contain at least 8 characters</div>
+                </div>
+            </div> -->
+
+            <div class="col-lg-12">
+                <button mat-button class="mat-primary" (click)="submit()">Login</button>
             </div>
         </div>
-
-        <div class="col-lg-6 mb-4">
-            <input type="password" placeholder="password" formControlName="password" class="form-control"
-                [ngClass]="{'is-invalid' : submitted && validators['password'].errors }">
-            <div *ngIf="submitted && validators['password'].errors" class="mb-0">
-                <div *ngIf="validators['password'].errors['required']">Password is required</div>
-                <div *ngIf="validators['password'].errors['pattern']">Password must contain letters (uppers or
-                    lower case), digits and some special characters.</div>
-                <div *ngIf="validators['password'].errors['maxLength']">Password must contain at most 20 characters</div>
-                <div *ngIf="validators['password'].errors['minLength']">Password must contain at least 8 characters</div>
-            </div>
-        </div>
-
-        <div class="col-lg-12">
-            <button class="btn btn-primary">Login</button>
-        </div>
+        
     </div>
 </form>

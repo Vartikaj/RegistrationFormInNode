@@ -13,10 +13,5 @@ export class LoginDataService {
     console.log("Login Data : " + JSON.stringify(data));
     // return this.httpClient.post(this.url + 'postLoginData', data);
     return this.httpClient.post(this.url + 'postLoginData',data);
-
   }
-
-
-
-
 }
